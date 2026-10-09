@@ -75,7 +75,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 @media (pointer:coarse){.btn{min-height:44px}}
 
 /* ---------- the journey (pinned, scroll-driven) ---------- */
-.journey{position:relative;height:760vh}
+.journey{position:relative;height:760vh;height:760svh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--canvas)}
 .layer{position:absolute;inset:0;will-change:transform,opacity,clip-path}
 .poster,.stage video,.layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center}
@@ -146,9 +146,22 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 .stack .sc p{margin:12px 0 18px;max-width:38ch;text-shadow:var(--tshadow)}
 .stack .sc .mk{width:64px;height:44px;margin-bottom:14px}
 .stack .sc .row{display:flex;gap:10px;flex-wrap:wrap}
-@media (max-width:720px),(orientation:portrait) and (max-width:1024px),(orientation:portrait) and (pointer:coarse),(orientation:landscape) and (pointer:coarse) and (max-height:560px),(prefers-reduced-motion:reduce){
-  .journey{display:none}.stack{display:block}
+/* modes: full (tablets, laptops, desktops), lite (phones: same pinned journey, stills instead of the film), stack (reduced motion, or sticky proven broken at runtime) */
+body.mode-stack .journey{display:none}body.mode-stack .stack{display:block}
+.ch-video .ending{position:absolute;inset:0;background:url('assets/hero-ending.jpg') center/cover no-repeat;opacity:0}
+body.mode-lite .ch-video .poster,body.mode-lite .ch-video .ending,.stage.video-failed .poster,.stage.video-failed .ending{transform:scale(calc(1 + .12*var(--hold,0)))}
+body.mode-lite .ch-video .ending,.stage.video-failed .ending{opacity:clamp(0,(var(--hold,0) - .35)*1.8,1)}
+@media (max-width:1024px){.band h1,.band h2{font-size:clamp(34px,6.6vw,64px)}.ch-kitchen img{filter:none}}
+@media (max-width:600px){
+  .band{max-width:88vw}.band h1,.band h2{font-size:clamp(30px,9.4vw,46px)}.band p{font-size:15px}.band .mk{width:56px;height:38px;margin-bottom:12px}
+  .b-arrive{top:13vh;left:6vw}.b-enter{left:6vw;right:6vw;bottom:14vh;text-align:left}.b-enter h2{font-size:clamp(28px,8.6vw,40px)}
+  .b-kitchen,.b-ext{left:6vw;bottom:12vh}.b-bath{left:6vw;right:6vw;top:14vh;text-align:left}.b-bath .row{justify-content:flex-start}
+  .b-deck{bottom:8vh}.b-deck h2{font-size:clamp(26px,8vw,38px)}.band .row{gap:8px}.band .btn{padding:11px 16px;font-size:14px}
+  .hud{left:12px;bottom:12px}.hud .chip{font-size:10.5px;padding:5px 9px}.cue{display:none}
 }
+/* the stacked fallback still animates: --sp is each card's scroll progress */
+.stack .sc img,.stack .sc .bg{transform:scale(calc(1.16 - .16*var(--sp,0)));clip-path:inset(calc((1 - var(--sp,0))*6%) round calc((1 - var(--sp,0))*24px))}
+.stack .sc .tx{opacity:clamp(0,(var(--sp,0) - .25)*2.2,1);transform:translateY(calc((1 - clamp(0,(var(--sp,0) - .25)*2.2,1))*22px))}
 @media (max-height:560px){.cue,.ring,.hud{display:none}}
 
 /* ---------- chalk line signature ---------- */
@@ -307,6 +320,7 @@ footer .fine{grid-column:1/-1;font-size:12.5px;opacity:.7;margin-top:10px}
   .ba{cursor:default}.ba .after{clip-path:inset(0 0 0 50%)}.ba .handle{left:50%}
   .proc .rail i{width:100%}.proc .bubble{left:100%}
   .env::before,.env i{display:none}
+  .stack .sc img,.stack .sc .bg{transform:none;clip-path:none}.stack .sc .tx{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -335,13 +349,14 @@ footer .fine{grid-column:1/-1;font-size:12.5px;opacity:.7;margin-top:10px}
     <div class="layer ch ch-video" id="ch-video" data-a="0" data-b="0.30" data-ti="0" data-to="0.06">
       <div class="poster" id="poster" aria-hidden="true"></div>
       <video id="hero-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+      <div class="ending" aria-hidden="true"></div>
       <div class="scrim" aria-hidden="true"></div>
     </div>
     <div class="bloom" id="bloom" aria-hidden="true"></div>
-    <div class="layer ch ch-kitchen" data-a="0.30" data-b="0.50" data-ti="0.05" data-to="0.05"><img src="assets/kitchen.jpg" alt="" width="1600" height="2207"><div class="shade"></div><div class="veil"></div></div>
-    <div class="layer ch ch-bath" data-a="0.50" data-b="0.68" data-ti="0.06" data-to="0.05"><img src="assets/bath-after.jpg" alt="" width="1600" height="1280"><div class="shade"></div><div class="veil"></div></div>
-    <div class="layer ch ch-ext" data-a="0.68" data-b="0.84" data-ti="0.06" data-to="0.05"><img src="assets/exterior.jpg" alt="" width="1920" height="1152"><div class="shade"></div><div class="veil"></div></div>
-    <div class="layer ch ch-deck" data-a="0.84" data-b="1" data-ti="0.06" data-to="0"><img src="assets/deck.jpg" alt="" width="1600" height="1818"><div class="shade"></div></div>
+    <div class="layer ch ch-kitchen" data-a="0.30" data-b="0.50" data-ti="0.07" data-to="0.06"><img src="assets/kitchen.jpg" alt="" width="1600" height="2207"><div class="shade"></div><div class="veil"></div></div>
+    <div class="layer ch ch-bath" data-a="0.50" data-b="0.68" data-ti="0.08" data-to="0.06"><img src="assets/bath-after.jpg" alt="" width="1600" height="1280"><div class="shade"></div><div class="veil"></div></div>
+    <div class="layer ch ch-ext" data-a="0.68" data-b="0.84" data-ti="0.08" data-to="0.06"><img src="assets/exterior.jpg" alt="" width="1920" height="1152"><div class="shade"></div><div class="veil"></div></div>
+    <div class="layer ch ch-deck" data-a="0.84" data-b="1" data-ti="0.08" data-to="0"><img src="assets/deck.jpg" alt="" width="1600" height="1818"><div class="shade"></div></div>
 
     <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)" transform="rotate(-90 24 24)"/></svg>
     <div class="cue" aria-hidden="true">Scroll<span></span></div>
@@ -370,7 +385,7 @@ footer .fine{grid-column:1/-1;font-size:12.5px;opacity:.7;margin-top:10px}
       <h2 data-split>More Space. More Possibilities.</h2>
       <div class="row"><a class="btn" href="#portfolio-additions">Explore Home Additions <span class="ar">→</span></a></div>
     </div>
-    <div class="band b-deck punch" data-a="0.88" data-b="1" data-ramp="0.06">
+    <div class="band b-deck punch" data-a="0.88" data-b="1" data-ramp="0.045">
       <span class="chip">Decks and outdoor living</span>
       <h2 data-split>Designed for Living. Built for Lasting Memories.</h2>
       <div class="row"><a class="btn" href="#portfolio-outdoor">Explore Outdoor Projects <span class="ar">→</span></a><a class="btn ghost" href="#book">Book a Free Consultation</a></div>
@@ -380,11 +395,11 @@ footer .fine{grid-column:1/-1;font-size:12.5px;opacity:.7;margin-top:10px}
 
 <!-- the same journey, stacked: phones, portrait tablets, reduced motion -->
 <div class="stack" id="stack">
-  <div class="sc"><div class="bg" style="background:url('assets/hero-ending.jpg') center/cover"></div><svg class="mk" aria-hidden="true"><use href="#gh"/></svg><h1>Spaces That Work as Hard as You Do.</h1><p>Family-run renovations in Cambridge, Kitchener, Waterloo and Guelph. Thoughtfully designed. Beautifully built.</p><div class="row"><a class="btn" href="#book">Book a Free Consultation</a><a class="btn ghost" href="tel:+15192121296">519-212-1296</a></div></div>
-  <div class="sc"><img src="assets/kitchen.jpg" alt="" loading="lazy"><span class="chip">Kitchen renovations</span><h2>The Heart of Your Home.</h2><div class="row"><a class="btn" href="#portfolio-kitchens">Explore Kitchen Projects <span class="ar">→</span></a></div></div>
-  <div class="sc"><img src="assets/bath-after.jpg" alt="" loading="lazy"><span class="chip">Bathroom renovations</span><h2>Every Detail Matters.</h2><div class="row"><a class="btn" href="#portfolio-bathrooms">Explore Bathroom Projects <span class="ar">→</span></a></div></div>
-  <div class="sc"><img src="assets/exterior.jpg" alt="" loading="lazy"><span class="chip">Additions and exterior transformations</span><h2>More Space. More Possibilities.</h2><div class="row"><a class="btn" href="#portfolio-additions">Explore Home Additions <span class="ar">→</span></a></div></div>
-  <div class="sc"><img src="assets/deck.jpg" alt="" loading="lazy"><span class="chip">Decks and outdoor living</span><h2>Designed for Living. Built for Lasting Memories.</h2><div class="row"><a class="btn" href="#portfolio-outdoor">Explore Outdoor Projects <span class="ar">→</span></a></div></div>
+  <div class="sc"><div class="bg" style="background:url('assets/hero-ending.jpg') center/cover"></div><div class="tx"><svg class="mk" aria-hidden="true"><use href="#gh"/></svg><h1>Spaces That Work as Hard as You Do.</h1><p>Family-run renovations in Cambridge, Kitchener, Waterloo and Guelph. Thoughtfully designed. Beautifully built.</p><div class="row"><a class="btn" href="#book">Book a Free Consultation</a><a class="btn ghost" href="tel:+15192121296">519-212-1296</a></div></div></div>
+  <div class="sc"><img src="assets/kitchen.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Kitchen renovations</span><h2>The Heart of Your Home.</h2><div class="row"><a class="btn" href="#portfolio-kitchens">Explore Kitchen Projects <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><img src="assets/bath-after.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Bathroom renovations</span><h2>Every Detail Matters.</h2><div class="row"><a class="btn" href="#portfolio-bathrooms">Explore Bathroom Projects <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><img src="assets/exterior.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Additions and exterior transformations</span><h2>More Space. More Possibilities.</h2><div class="row"><a class="btn" href="#portfolio-additions">Explore Home Additions <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><img src="assets/deck.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Decks and outdoor living</span><h2>Designed for Living. Built for Lasting Memories.</h2><div class="row"><a class="btn" href="#portfolio-outdoor">Explore Outdoor Projects <span class="ar">→</span></a></div></div></div>
 </div>
 
 <!-- ===== Scene 7: the team ===== -->
@@ -575,7 +590,7 @@ function render(p) {
     setVar(c, 'vin', c.el, '--in', vin, 0.004); setVar(c, 'vout', c.el, '--out', vout, 0.004); setVar(c, 'vhold', c.el, '--hold', vhold, 0.006);
   }
   // the door-light bloom that carries the house into the kitchen
-  const bl = Math.sin(clamp((p - 0.265) / 0.075, 0, 1) * Math.PI);
+  const bl = Math.sin(clamp((p - 0.26) / 0.09, 0, 1) * Math.PI);
   if (Math.abs(bl - lastBloom) > 0.004) { lastBloom = bl; bloom.style.setProperty('--b', bl.toFixed(3)); }
   for (const bd of bands) {
     const f = Math.min(0.02, (bd.b - bd.a) / 3);
@@ -619,24 +634,48 @@ async function loadHeroBlob() {
 }
 function directSrc() { return new Promise((res, rej) => { video.addEventListener('canplay', () => { armVideo(); res(); }, { once: true }); video.addEventListener('error', rej, { once: true }); video.src = VIDEO_URL; video.load(); }); }
 function startBlobFetch() { if (started) return; started = true; loadHeroBlob().catch(() => directSrc().catch(failVideo)); }
-function initHeroOnce() {
-  if (initHeroOnce.done) return; initHeroOnce.done = true;
-  poster.style.backgroundImage = "url('assets/hero-poster.jpg')";
+function initHeroOnce(withFilm) {
+  if (!initHeroOnce.poster) { initHeroOnce.poster = true; poster.style.backgroundImage = "url('assets/hero-poster.jpg')"; }
+  if (!withFilm || initHeroOnce.film) return; initHeroOnce.film = true;   // phones never download the film; the poster pushes in and the ending frame fades over it
   const img = new Image(); img.onload = startBlobFetch; img.onerror = startBlobFetch; img.src = 'assets/hero-poster.jpg';
   setTimeout(startBlobFetch, 4000);
 }
 
-/* ---------- the five gates, live (must match the CSS exactly) ---------- */
-const GATES = ['(max-width: 720px)', '(orientation: portrait) and (max-width: 1024px)', '(orientation: portrait) and (pointer: coarse)', '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)', '(prefers-reduced-motion: reduce)'];
-function enableScrub() {
-  if (scrubOn) return; scrubOn = true; initHeroOnce();
+/* ---------- modes: decided from the viewport and what the browser can do, never from device sniffing ---------- */
+let mode = null, stickyBroken = false, stickyChecks = 0;
+function pickMode() {
+  if (RM.matches || stickyBroken) return 'stack';
+  return Math.min(innerWidth, innerHeight) < 600 ? 'lite' : 'full';   // phones get the same journey on stills
+}
+function enableScrub(withFilm) {
+  if (scrubOn) return; scrubOn = true;
+  initHeroOnce(withFilm);
   addEventListener('scroll', onScroll, { passive: true });
   bands.forEach(b => { b.op = -1; b.k = -1; b.kb = -1; }); chapters.forEach(c => { c.vin = c.vout = c.vhold = -1; }); hudIdx = -1; lastBloom = -1;
   unpinFinalStates(); render(progress()); onScroll();
 }
 function disableScrub() { if (!scrubOn) return; scrubOn = false; removeEventListener('scroll', onScroll); if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
-function applyHeroMode() { if (GATES.some(q => matchMedia(q).matches)) disableScrub(); else enableScrub(); }
-const MQLS = GATES.map(q => matchMedia(q)); MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
+function applyHeroMode() {
+  const m = pickMode(); if (m === mode) return; mode = m;
+  document.body.classList.remove('mode-full', 'mode-lite', 'mode-stack'); document.body.classList.add('mode-' + m);
+  if (m === 'stack') { disableScrub(); stackTick(); } else { enableScrub(m === 'full'); }
+}
+// prove the pin: if the stage is not sticking while the journey is on screen, the browser cannot pin here; fall back to the animated stack
+function stickyCheck() {
+  if (mode === 'stack' || stickyBroken) return;
+  const r = journey.getBoundingClientRect(); if (r.top > -200 || r.bottom < innerHeight + 200) return;
+  const top = stage.getBoundingClientRect().top;
+  if (Math.abs(top) > 40) { if (++stickyChecks >= 3) { stickyBroken = true; applyHeroMode(); } } else stickyChecks = 0;
+}
+addEventListener('scroll', stickyCheck, { passive: true });
+let rsz; addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(applyHeroMode, 150); });
+// the stacked fallback: each card's progress through the viewport drives its reveal
+const cards = $$('.stack .sc'); const cardP = cards.map(() => -1);
+function stackTick() {
+  if (mode !== 'stack' || RM.matches) return;
+  cards.forEach((c, i) => { const r = c.getBoundingClientRect(); const p = clamp((innerHeight - r.top) / (innerHeight * 0.9), 0, 1); const q = Math.round(p * 100) / 100; if (q !== cardP[i]) { cardP[i] = q; c.style.setProperty('--sp', q); } });
+}
+addEventListener('scroll', stackTick, { passive: true });
 
 /* ---------- nav ---------- */
 const nav = $('.nav'); let navSolid = false;
@@ -705,10 +744,11 @@ form.addEventListener('submit', e => {
 /* ---------- reduced motion, both directions ---------- */
 function pinToFinalStates() { rvs.forEach(s => s.classList.add('in', 'done')); proc.style.setProperty('--p', '100%'); }
 function unpinFinalStates() { proc.style.removeProperty('--p'); lastP = -1; }
-RM.addEventListener('change', e => { if (e.matches) pinToFinalStates(); else applyHeroMode(); });
+RM.addEventListener('change', e => { if (e.matches) pinToFinalStates(); applyHeroMode(); });
 document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
 if (RM.matches) pinToFinalStates();
 applyHeroMode();
+window.__gh = { get mode() { return mode; }, breakSticky() { stickyBroken = true; applyHeroMode(); } };
 })();
 </script>
 </body>
