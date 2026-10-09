@@ -11,11 +11,11 @@
 <meta property="og:description" content="Family-run renovations in Cambridge, Kitchener, Waterloo and Guelph. Free consultation.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://example.com/">
-<meta property="og:image" content="https://example.com/assets/hero-ending.jpg">
+<meta property="og:image" content="https://example.com/assets/film/approach-ending.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 68'%3E%3Crect x='3' y='3' width='94' height='62' fill='none' stroke='%23d9964f' stroke-width='5'/%3E%3Cpath fill='%23d9964f' d='M16 14h36v8H24v24h16V34h8v20H16zM32 30h52v8H32zM76 14h8v40h-8z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=DM+Sans:wght@400;500;700&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
   --canvas:#121419;--panel:#1b1e26;--panel-2:#22262f;
@@ -25,7 +25,7 @@
   --line:rgba(242,238,231,.12);--line-strong:rgba(242,238,231,.28);
   --ease:cubic-bezier(.22,.61,.36,1);--ease-out:cubic-bezier(.16,1,.3,1);
   --tshadow:0 1px 2px rgba(5,5,10,.95),0 3px 12px rgba(5,5,10,.78),0 10px 44px rgba(5,5,10,.8);
-  --display:'Syne',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,monospace;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;--body:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--canvas:#121419;--text-primary:#f2eee7}}
 :root[data-theme="dark"]{--canvas:#121419;--text-primary:#f2eee7}
@@ -35,7 +35,8 @@ body{background:var(--canvas);color:var(--text-primary);font-family:var(--body);
 @keyframes pagein{to{opacity:1}}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.04;letter-spacing:-.02em}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.02;letter-spacing:-.02em;font-variation-settings:"opsz" 144,"SOFT" 40,"WONK" 0}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:400;color:var(--accent);font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1}
 .skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#1a1208;padding:10px 14px;border-radius:8px;z-index:100}
 .skip:focus{left:8px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -58,7 +59,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 .nav.solid{background:rgba(18,20,25,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
 .brand svg{width:40px;height:27px}
-.brand b{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.brand b{font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
 .nav ul{list-style:none;display:flex;gap:28px;align-items:center}
 .nav ul a{text-decoration:none;font-size:14.5px;color:var(--text-secondary);transition:color .3s}
 .nav ul a:hover{color:var(--text-primary)}
@@ -74,96 +75,104 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 @media (max-width:480px){.brand b{display:none}.nav{padding:12px 14px}.nav ul a.btn{padding:9px 14px;font-size:13px}}
 @media (pointer:coarse){.btn{min-height:44px}}
 
-/* ---------- the journey (pinned, scroll-driven) ---------- */
-.journey{position:relative;height:760vh;height:760svh}
+/* ---------- the journey (pinned, scroll-driven): seven chapters, six films, one camera ---------- */
+.journey{position:relative;height:920vh;height:920svh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--canvas)}
 .layer{position:absolute;inset:0;will-change:transform,opacity,clip-path}
-.poster,.stage video,.layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center}
-.stage video{opacity:0;transition:opacity 1s var(--ease);will-change:transform}
-.stage.video-ready video{opacity:1}
-.stage.video-failed video{display:none}
-.scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(10,10,18,0) 35%,rgba(10,10,18,.62) 100%)}
-.ring{position:absolute;right:22px;bottom:22px;width:34px;height:34px;color:var(--accent);opacity:.85;transition:opacity .6s;z-index:5}
+.f .poster,.f video,.f .ending{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center}
+.f video{opacity:0;transition:opacity .9s var(--ease)}
+.f.ready video{opacity:1}
+.f .ending{opacity:0}
+.f .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,18,.32),rgba(10,10,18,.04) 38%,rgba(10,10,18,.5) 100%)}
+.f .veil{position:absolute;inset:0;background:rgba(18,20,25,calc(.75*var(--out,0)))}
+.ring{position:absolute;right:22px;bottom:22px;width:34px;height:34px;color:var(--accent);opacity:.85;transition:opacity .6s;z-index:6}
 .ring circle{transition:stroke-dashoffset .15s linear}
-.stage.video-ready .ring{opacity:0}
-.cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:var(--text-secondary);font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transition:opacity .8s;z-index:5}
+.stage.film-on .ring{opacity:0}
+.cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:var(--text-secondary);font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;transition:opacity .8s;z-index:6}
 .cue span{width:1px;height:34px;background:linear-gradient(var(--accent),transparent);display:block;animation:cue 2.4s var(--ease) -1.2s infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .stage.cue-on .cue{opacity:.9}
-/* chapter layers: --in rises 0..1 on entry, --out rises 0..1 on exit, --hold rises 0..1 across the stay */
+/* chapter layers: --in rises 0..1 on entry, --out rises 0..1 while the next chapter takes over, --hold rises 0..1 across the stay */
 .ch{opacity:0}
-.ch-video{opacity:calc(1 - var(--out,0))}
-.bloom{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 62%,rgba(255,226,180,1) 0%,rgba(255,214,160,.92) 22%,rgba(255,200,140,0) 60%);opacity:var(--b,0);transform:scale(calc(.4 + 1.8*var(--b,0)));z-index:3}
-.ch-kitchen{opacity:var(--in,0);z-index:2}
-.ch-kitchen img{transform:scale(calc(1.22 - .18*var(--in,0) - .04*var(--hold,0) + .12*var(--out,0))) translateY(calc(-6%*var(--out,0)));filter:blur(calc((1 - var(--in,0))*14px))}
-.ch-kitchen .veil{position:absolute;inset:0;background:rgba(18,20,25,calc(.7*var(--out,0)))}
-.ch-bath{clip-path:inset(calc((1 - var(--in,0))*50%) calc((1 - var(--in,0))*50%) calc((1 - var(--in,0))*50%) calc((1 - var(--in,0))*50%) round calc((1 - var(--in,0))*40px));opacity:1;z-index:2}
-.ch-bath img{transform:scale(calc(1.12 - .08*var(--in,0) - .03*var(--hold,0) - .12*var(--out,0)))}
-.ch-bath .veil{position:absolute;inset:0;background:rgba(18,20,25,calc(.75*var(--out,0)))}
-.ch-ext{clip-path:circle(calc(var(--in,0)*95%) at 50% 56%);opacity:1;z-index:2}
-.ch-ext img{transform:scale(calc(1.14 - .1*var(--in,0) - .02*var(--hold,0) + .3*var(--out,0)))}
-.ch-ext .veil{position:absolute;inset:0;background:rgba(18,20,25,calc(.8*var(--out,0)))}
-.ch-deck{opacity:var(--in,0);z-index:2}
-.ch-deck img{transform:scale(calc(.86 + .14*var(--in,0) + .06*var(--hold,0)));transform-origin:50% 60%}
-.ch .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,18,.35),rgba(10,10,18,.05) 40%,rgba(10,10,18,.55) 100%)}
+.f-arrive{opacity:1;z-index:1}
+.f-approach{opacity:var(--in,0);z-index:2}                                     /* same camera, same frame: a straight cut */
+.f-enter{opacity:var(--in,0);z-index:3}
+.f-enter .poster,.f-enter video,.f-enter .ending{transform:scale(calc(1 + .08*var(--out,0)))}   /* the hall swells as the light takes over */
+.bloom{position:absolute;inset:0;pointer-events:none;z-index:4;opacity:var(--b,0);transform:scale(calc(.5 + 1.6*var(--b,0)));background:radial-gradient(circle at 50% 56%,rgba(255,236,205,1) 0%,rgba(255,220,170,.95) 24%,rgba(255,200,140,0) 62%)}
+.f-kitchen{opacity:var(--in,0);z-index:5}
+.f-kitchen .poster,.f-kitchen video,.f-kitchen .ending{transform:scale(calc(1.16 - .16*var(--in,0) + .1*var(--out,0)));filter:blur(calc((1 - var(--in,0))*16px)) brightness(calc(1 + .6*(1 - var(--in,0))))}
+.f-bath{z-index:6;opacity:1;clip-path:inset(0 calc((1 - var(--in,0))*50%) 0 calc((1 - var(--in,0))*50%))}   /* the double doors open from the centre */
+.f-bath .poster,.f-bath video,.f-bath .ending{transform:scale(calc(1.1 - .1*var(--in,0) - .1*var(--out,0)))}
+.f-bath::before,.f-bath::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:rgba(255,232,200,.9);box-shadow:0 0 22px 6px rgba(255,214,160,.55);opacity:calc(1 - var(--in,0));z-index:2}
+.f-bath::before{left:calc((1 - var(--in,0))*50%)}.f-bath::after{right:calc((1 - var(--in,0))*50%)}
+.f-exterior{z-index:7;opacity:1;clip-path:circle(calc(var(--in,0)*96%) at 50% 56%)}   /* the iris: back outside */
+.f-exterior .poster,.f-exterior video,.f-exterior .ending{transform:scale(calc(1.12 - .12*var(--in,0) + .22*var(--out,0)))}
+.f-deck{z-index:8;opacity:1;clip-path:inset(calc((1 - var(--in,0))*100%) 0 0 0);transform:translateY(calc((1 - var(--in,0))*10%))}   /* the deck rises into frame */
+.f-deck .poster,.f-deck video,.f-deck .ending{transform:scale(calc(.92 + .08*var(--in,0)));transform-origin:50% 70%}
+/* without the film (phones, or a download that failed) each chapter is its first frame pushing in and its last frame fading over */
+.f.nofilm video{display:none}
+.f.nofilm .poster{transform:scale(calc(1 + .12*var(--hold,0)))}
+.f.nofilm .ending{opacity:clamp(0,(var(--hold,0) - .3)*1.6,1);transform:scale(calc(1 + .04*var(--hold,0)))}
+.f-enter.nofilm .poster,.f-enter.nofilm .ending{transform:scale(calc(1 + .12*var(--hold,0) + .08*var(--out,0)))}
 /* captions */
-.band{position:absolute;opacity:0;text-shadow:var(--tshadow);pointer-events:none;max-width:min(620px,90vw);z-index:4}
+.band{position:absolute;opacity:0;text-shadow:var(--tshadow);pointer-events:none;max-width:min(720px,90vw);z-index:9}
 .band::before{content:"";position:absolute;inset:-18% -14%;pointer-events:none;z-index:-1;opacity:calc(.25 + .75*var(--k,1));background:radial-gradient(ellipse 74% 62% at 50% 50%,rgba(5,5,10,.66) 0%,rgba(5,5,10,.44) 46%,rgba(5,5,10,0) 76%)}
-.band h1,.band h2,.band p,.band .row,.band .mk{position:relative}
-.band h1,.band h2{font-size:clamp(36px,5.6vw,80px)}
-.band p{font-size:clamp(16px,1.4vw,19px);max-width:42ch;margin-top:14px;line-height:1.5}
-.band .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;pointer-events:auto;opacity:var(--kb,0);transform:translateY(calc((1 - var(--kb,0))*14px))}
-.band .mk{width:72px;height:49px;color:var(--text-primary);margin-bottom:18px;opacity:var(--k,0);transform:translateY(calc((1 - var(--k,0))*-10px))}
-.band .w{display:inline-block;white-space:nowrap}
-.rise .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*26px))}
-.drift .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*-22px))}
-.depth .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);transform:scale(calc(.84 + .16*var(--kc)))}
-.punch .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);--ks2:clamp(0,(var(--k,0) - var(--th,0) - .12)*2.8,1);opacity:var(--kc);transform:scale(calc(.6 + .58*var(--kc) - .18*var(--ks2)))}
-.b-arrive{left:7vw;top:15vh}
-.b-enter{right:7vw;bottom:16vh;text-align:right;max-width:min(760px,86vw)}
-.b-enter h2{font-size:clamp(30px,4.4vw,64px)}
-.b-enter p{margin-left:auto}
+.band h1,.band h2,.band p,.band .row,.band .mk,.band .ix{position:relative}
+.band .ix{display:flex;align-items:center;gap:12px;margin-bottom:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);opacity:var(--k,0)}
+.band .ix::before{content:"";width:44px;height:1px;background:var(--accent);transform:scaleX(var(--k,0));transform-origin:left}
+.band .ix b{font-weight:400;color:var(--text-secondary)}
+.band h1,.band h2{font-size:clamp(42px,6.6vw,108px);line-height:.98;letter-spacing:-.028em}
+.band h2.s{font-size:clamp(34px,5vw,80px)}
+.band p{font-size:clamp(16px,1.35vw,19px);max-width:42ch;margin-top:18px;line-height:1.55;color:var(--text-primary);opacity:var(--kb,0);transform:translateY(calc((1 - var(--kb,0))*12px))}
+.band .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;pointer-events:auto;opacity:var(--kb,0);transform:translateY(calc((1 - var(--kb,0))*14px))}
+.band .mk{width:84px;height:57px;color:var(--text-primary);margin-bottom:22px;opacity:var(--k,0);transform:translateY(calc((1 - var(--k,0))*-10px))}
+.band .w{display:inline-block;white-space:nowrap;--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc)}
+.rise .w{transform:translateY(calc((1 - var(--kc))*.5em));filter:blur(calc((1 - var(--kc))*10px))}
+.drift .w{transform:translateY(calc((1 - var(--kc))*-.4em));filter:blur(calc((1 - var(--kc))*10px))}
+.depth .w{transform:scale(calc(.82 + .18*var(--kc)));filter:blur(calc((1 - var(--kc))*8px))}
+.punch .w{--ks2:clamp(0,(var(--k,0) - var(--th,0) - .12)*2.8,1);transform:scale(calc(.6 + .58*var(--kc) - .18*var(--ks2)))}
+.b-arrive{left:7vw;top:16vh}
+.b-enter{right:7vw;bottom:16vh;text-align:right;max-width:min(820px,86vw)}
+.b-enter .ix{justify-content:flex-end}.b-enter .ix::before{order:2}
+.b-in{left:50%;bottom:12vh;transform:translateX(-50%);text-align:center}
+.b-in .ix{justify-content:center;margin:0}
 .b-kitchen{left:7vw;bottom:14vh}
 .b-bath{right:7vw;top:16vh;text-align:right}
-.b-bath p{margin-left:auto}.b-bath .row{justify-content:flex-end}
+.b-bath p{margin-left:auto}.b-bath .row{justify-content:flex-end}.b-bath .ix{justify-content:flex-end}.b-bath .ix::before{order:2}
 .b-ext{left:7vw;bottom:14vh}
-.b-deck{left:50%;bottom:10vh;transform:translateX(-50%);text-align:center;max-width:min(820px,92vw)}
-.b-deck p{margin-inline:auto}.b-deck .row{justify-content:center}
+.b-deck{left:50%;bottom:10vh;transform:translateX(-50%);text-align:center;max-width:min(900px,92vw)}
+.b-deck p{margin-inline:auto}.b-deck .row{justify-content:center}.b-deck .ix{justify-content:center}
 .chip{display:inline-block;background:rgba(8,8,15,.55);border:1px solid rgba(96,96,126,.3);border-radius:10px;backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(5,5,10,.85);padding:6px 12px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.band .chip{margin-bottom:14px}
-.hud{position:absolute;left:22px;bottom:22px;z-index:5;display:flex;gap:8px;align-items:center;opacity:.9}
+.hud{position:absolute;left:22px;bottom:22px;z-index:9;display:flex;gap:10px;align-items:center;opacity:.9}
 .hud .chip{margin:0}
 .hud .dots{display:flex;gap:6px}
 .hud .dots i{width:6px;height:6px;border-radius:50%;background:rgba(242,238,231,.3);transition:background .4s,transform .4s}
 .hud .dots i.on{background:var(--accent);transform:scale(1.3)}
 
-/* stacked journey: phones, portrait tablets, reduced motion */
+/* stacked journey: reduced motion, or a browser that proves it cannot pin */
 .stack{display:none}
 .stack .sc{position:relative;min-height:88svh;display:flex;flex-direction:column;justify-content:flex-end;padding:90px 20px 48px;overflow:hidden;isolation:isolate}
-.stack .sc img,.stack .sc .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.stack .sc img,.stack .sc .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;background-size:cover;background-position:center}
 .stack .sc::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,18,.3),rgba(10,10,18,.1) 40%,rgba(18,20,25,.9) 100%)}
-.stack .sc h1,.stack .sc h2{font-size:clamp(34px,9vw,60px);text-shadow:var(--tshadow)}
+.stack .sc h1,.stack .sc h2{font-size:clamp(36px,9vw,64px);text-shadow:var(--tshadow)}
 .stack .sc p{margin:12px 0 18px;max-width:38ch;text-shadow:var(--tshadow)}
 .stack .sc .mk{width:64px;height:44px;margin-bottom:14px}
 .stack .sc .row{display:flex;gap:10px;flex-wrap:wrap}
-/* modes: full (tablets, laptops, desktops), lite (phones: same pinned journey, stills instead of the film), stack (reduced motion, or sticky proven broken at runtime) */
+.stack .sc .chip{margin-bottom:12px}
+/* modes: full (tablets, laptops, desktops: the films), lite (phones: the same pinned journey on first and last frames), stack */
 body.mode-stack .journey{display:none}body.mode-stack .stack{display:block}
-.ch-video .ending{position:absolute;inset:0;background:url('assets/hero-ending.jpg') center/cover no-repeat;opacity:0}
-body.mode-lite .ch-video .poster,body.mode-lite .ch-video .ending,.stage.video-failed .poster,.stage.video-failed .ending{transform:scale(calc(1 + .12*var(--hold,0)))}
-body.mode-lite .ch-video .ending,.stage.video-failed .ending{opacity:clamp(0,(var(--hold,0) - .35)*1.8,1)}
-@media (max-width:1024px){.band h1,.band h2{font-size:clamp(34px,6.6vw,64px)}.ch-kitchen img{filter:none}}
+@media (max-width:1024px){.band h1,.band h2{font-size:clamp(36px,7vw,72px)}.band h2.s{font-size:clamp(30px,5.4vw,56px)}.f-kitchen .poster,.f-kitchen video,.f-kitchen .ending{filter:none}.band .w{filter:none!important}}
 @media (max-width:600px){
-  .band{max-width:88vw}.band h1,.band h2{font-size:clamp(30px,9.4vw,46px)}.band p{font-size:15px}.band .mk{width:56px;height:38px;margin-bottom:12px}
-  .b-arrive{top:13vh;left:6vw}.b-enter{left:6vw;right:6vw;bottom:14vh;text-align:left}.b-enter h2{font-size:clamp(28px,8.6vw,40px)}
-  .b-kitchen,.b-ext{left:6vw;bottom:12vh}.b-bath{left:6vw;right:6vw;top:14vh;text-align:left}.b-bath .row{justify-content:flex-start}
-  .b-deck{bottom:8vh}.b-deck h2{font-size:clamp(26px,8vw,38px)}.band .row{gap:8px}.band .btn{padding:11px 16px;font-size:14px}
+  .band{max-width:88vw}.band h1,.band h2{font-size:clamp(32px,10vw,48px)}.band h2.s{font-size:clamp(28px,8.4vw,40px)}.band p{font-size:15px;margin-top:12px}.band .mk{width:56px;height:38px;margin-bottom:12px}.band .ix{margin-bottom:12px;font-size:10.5px}
+  .b-arrive{top:13vh;left:6vw}.b-enter{left:6vw;right:6vw;bottom:14vh;text-align:left}.b-enter .ix{justify-content:flex-start}.b-enter .ix::before{order:0}
+  .b-kitchen,.b-ext{left:6vw;bottom:12vh}.b-bath{left:6vw;right:6vw;top:14vh;text-align:left}.b-bath .row,.b-bath .ix{justify-content:flex-start}.b-bath .ix::before{order:0}
+  .b-deck{bottom:8vh}.band .row{gap:8px;margin-top:18px}.band .btn{padding:11px 16px;font-size:14px}
   .hud{left:12px;bottom:12px}.hud .chip{font-size:10.5px;padding:5px 9px}.cue{display:none}
 }
 /* the stacked fallback still animates: --sp is each card's scroll progress */
 .stack .sc img,.stack .sc .bg{transform:scale(calc(1.16 - .16*var(--sp,0)));clip-path:inset(calc((1 - var(--sp,0))*6%) round calc((1 - var(--sp,0))*24px))}
 .stack .sc .tx{opacity:clamp(0,(var(--sp,0) - .25)*2.2,1);transform:translateY(calc((1 - clamp(0,(var(--sp,0) - .25)*2.2,1))*22px))}
 @media (max-height:560px){.cue,.ring,.hud{display:none}}
-
 /* ---------- chalk line signature ---------- */
 .chalk{display:block;width:100%;height:14px;overflow:visible;margin-bottom:36px}
 .chalk line{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 1.6s var(--ease-out)}
@@ -278,7 +287,7 @@ dialog.lb::backdrop{background:rgba(10,10,16,.6)}
 
 /* book: scene 8 */
 .book{position:relative;overflow:hidden;padding:120px 0}
-.book .bg{position:absolute;inset:-6%;background:url('assets/hero-ending.jpg') center/cover no-repeat;animation:bookdrift 60s ease-in-out -15s infinite alternate;z-index:0}
+.book .bg{position:absolute;inset:-6%;background:url('assets/film/approach-ending.jpg') center/cover no-repeat;animation:bookdrift 60s ease-in-out -15s infinite alternate;z-index:0}
 @keyframes bookdrift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.08) translate(-1.5%,1%)}}
 .book::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,20,25,.92) 0%,rgba(18,20,25,.78) 50%,rgba(18,20,25,.55) 100%);z-index:1}
 .book .wrap{position:relative;z-index:2}
@@ -343,63 +352,65 @@ footer .fine{grid-column:1/-1;font-size:12.5px;opacity:.7;margin-top:10px}
 <main id="main" tabindex="-1">
 <div id="top"></div>
 
-<!-- ===== THE JOURNEY: exterior > entrance > kitchen > bathroom > exterior transformation > deck ===== -->
+<!-- ===== THE JOURNEY. One camera: the street at dusk > up the walk as the door opens > through the door > the kitchen > the bathroom > back outside > the deck.
+     Each chapter is a short film scrubbed by scroll (assets/film/<name>.mp4, with its first and last frame as stills). Chapter timing lives in data-a / data-b. ===== -->
 <div class="journey" id="journey">
   <div class="stage" id="stage">
-    <div class="layer ch ch-video" id="ch-video" data-a="0" data-b="0.30" data-ti="0" data-to="0.06">
-      <div class="poster" id="poster" aria-hidden="true"></div>
-      <video id="hero-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
-      <div class="ending" aria-hidden="true"></div>
-      <div class="scrim" aria-hidden="true"></div>
-    </div>
+    <div class="layer ch f f-arrive"   data-film="arrive"   data-a="0"    data-b="0.14" data-ti="0"    data-to="0.012"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div></div>
+    <div class="layer ch f f-approach" data-film="approach" data-a="0.14" data-b="0.28" data-ti="0.012" data-to="0.012"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div></div>
+    <div class="layer ch f f-enter"    data-film="enter"    data-a="0.28" data-b="0.40" data-ti="0.012" data-to="0.04"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div></div>
     <div class="bloom" id="bloom" aria-hidden="true"></div>
-    <div class="layer ch ch-kitchen" data-a="0.30" data-b="0.50" data-ti="0.07" data-to="0.06"><img src="assets/kitchen.jpg" alt="" width="1600" height="2207"><div class="shade"></div><div class="veil"></div></div>
-    <div class="layer ch ch-bath" data-a="0.50" data-b="0.68" data-ti="0.08" data-to="0.06"><img src="assets/bath-after.jpg" alt="" width="1600" height="1280"><div class="shade"></div><div class="veil"></div></div>
-    <div class="layer ch ch-ext" data-a="0.68" data-b="0.84" data-ti="0.08" data-to="0.06"><img src="assets/exterior.jpg" alt="" width="1920" height="1152"><div class="shade"></div><div class="veil"></div></div>
-    <div class="layer ch ch-deck" data-a="0.84" data-b="1" data-ti="0.08" data-to="0"><img src="assets/deck.jpg" alt="" width="1600" height="1818"><div class="shade"></div></div>
+    <div class="layer ch f f-kitchen"  data-film="kitchen"  data-a="0.40" data-b="0.55" data-ti="0.04" data-to="0.05"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div><div class="veil"></div></div>
+    <div class="layer ch f f-bath"     data-film="bath"     data-a="0.55" data-b="0.70" data-ti="0.05" data-to="0.05"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div><div class="veil"></div></div>
+    <div class="layer ch f f-exterior" data-film="exterior" data-a="0.70" data-b="0.85" data-ti="0.05" data-to="0.05"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div><div class="veil"></div></div>
+    <div class="layer ch f f-deck"     data-film="deck"     data-a="0.85" data-b="1"    data-ti="0.05" data-to="0"><div class="poster"></div><video muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video><div class="ending"></div><div class="shade"></div></div>
 
     <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)" transform="rotate(-90 24 24)"/></svg>
     <div class="cue" aria-hidden="true">Scroll<span></span></div>
-    <div class="hud" aria-hidden="true"><span class="chip" id="hud-label">The arrival</span><span class="dots" id="hud-dots"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+    <div class="hud" aria-hidden="true"><span class="chip" id="hud-label">The street</span><span class="dots" id="hud-dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
 
-    <div class="band b-arrive rise" data-a="0" data-b="0.17" data-ramp="0.05">
+    <div class="band b-arrive rise" data-a="0" data-b="0.125" data-ramp="0.045">
       <svg class="mk" aria-hidden="true"><use href="#gh"/></svg>
-      <h1 data-split>Spaces That Work as Hard as You Do.</h1>
+      <h1 data-split>Spaces That Work <em>as Hard as You Do.</em></h1>
       <p>Family-run renovations in Cambridge, Kitchener, Waterloo and Guelph.</p>
     </div>
-    <div class="band b-enter depth" data-a="0.18" data-b="0.31" data-ramp="0.05">
-      <h2 data-split>Thoughtfully Designed. Beautifully Built.</h2>
+    <div class="band b-enter depth" data-a="0.15" data-b="0.275" data-ramp="0.045">
+      <div class="ix"><b>02</b> The approach</div>
+      <h2 class="s" data-split>Thoughtfully Designed. <em>Beautifully Built.</em></h2>
     </div>
-    <div class="band b-kitchen rise" data-a="0.35" data-b="0.50" data-ramp="0.05">
-      <span class="chip">Kitchen renovations</span>
-      <h2 data-split>The Heart of Your Home.</h2>
+    <div class="band b-in rise" data-a="0.30" data-b="0.385" data-ramp="0.03">
+      <div class="ix"><b>03</b> Come on in</div>
+    </div>
+    <div class="band b-kitchen rise" data-a="0.43" data-b="0.55" data-ramp="0.045">
+      <div class="ix"><b>04</b> Kitchen renovations</div>
+      <h2 data-split>The <em>Heart</em> of Your Home.</h2>
       <div class="row"><a class="btn" href="#portfolio-kitchens">Explore Kitchen Projects <span class="ar">→</span></a></div>
     </div>
-    <div class="band b-bath drift" data-a="0.53" data-b="0.68" data-ramp="0.05">
-      <span class="chip">Bathroom renovations</span>
-      <h2 data-split>Every Detail Matters.</h2>
+    <div class="band b-bath drift" data-a="0.585" data-b="0.70" data-ramp="0.045">
+      <div class="ix"><b>05</b> Bathroom renovations</div>
+      <h2 data-split>Every <em>Detail</em> Matters.</h2>
       <div class="row"><a class="btn" href="#portfolio-bathrooms">Explore Bathroom Projects <span class="ar">→</span></a></div>
     </div>
-    <div class="band b-ext depth" data-a="0.71" data-b="0.84" data-ramp="0.05">
-      <span class="chip">Additions and exterior transformations</span>
-      <h2 data-split>More Space. More Possibilities.</h2>
+    <div class="band b-ext depth" data-a="0.735" data-b="0.85" data-ramp="0.045">
+      <div class="ix"><b>06</b> Additions and exteriors</div>
+      <h2 data-split>More Space. <em>More Possibilities.</em></h2>
       <div class="row"><a class="btn" href="#portfolio-additions">Explore Home Additions <span class="ar">→</span></a></div>
     </div>
-    <div class="band b-deck punch" data-a="0.88" data-b="1" data-ramp="0.045">
-      <span class="chip">Decks and outdoor living</span>
-      <h2 data-split>Designed for Living. Built for Lasting Memories.</h2>
+    <div class="band b-deck punch" data-a="0.885" data-b="1" data-ramp="0.04">
+      <div class="ix"><b>07</b> Decks and outdoor living</div>
+      <h2 class="s" data-split>Designed for Living. <em>Built for Lasting Memories.</em></h2>
       <div class="row"><a class="btn" href="#portfolio-outdoor">Explore Outdoor Projects <span class="ar">→</span></a><a class="btn ghost" href="#book">Book a Free Consultation</a></div>
     </div>
   </div>
 </div>
 
-<!-- the same journey, stacked: phones, portrait tablets, reduced motion -->
+<!-- the same journey, stacked: reduced motion, or a browser that cannot pin -->
 <div class="stack" id="stack">
-  <div class="sc"><div class="bg" style="background:url('assets/hero-ending.jpg') center/cover"></div><div class="tx"><svg class="mk" aria-hidden="true"><use href="#gh"/></svg><h1>Spaces That Work as Hard as You Do.</h1><p>Family-run renovations in Cambridge, Kitchener, Waterloo and Guelph. Thoughtfully designed. Beautifully built.</p><div class="row"><a class="btn" href="#book">Book a Free Consultation</a><a class="btn ghost" href="tel:+15192121296">519-212-1296</a></div></div></div>
-  <div class="sc"><img src="assets/kitchen.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Kitchen renovations</span><h2>The Heart of Your Home.</h2><div class="row"><a class="btn" href="#portfolio-kitchens">Explore Kitchen Projects <span class="ar">→</span></a></div></div></div>
-  <div class="sc"><img src="assets/bath-after.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Bathroom renovations</span><h2>Every Detail Matters.</h2><div class="row"><a class="btn" href="#portfolio-bathrooms">Explore Bathroom Projects <span class="ar">→</span></a></div></div></div>
-  <div class="sc"><img src="assets/exterior.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Additions and exterior transformations</span><h2>More Space. More Possibilities.</h2><div class="row"><a class="btn" href="#portfolio-additions">Explore Home Additions <span class="ar">→</span></a></div></div></div>
-  <div class="sc"><img src="assets/deck.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Decks and outdoor living</span><h2>Designed for Living. Built for Lasting Memories.</h2><div class="row"><a class="btn" href="#portfolio-outdoor">Explore Outdoor Projects <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><div class="bg" style="background-image:url('assets/film/approach-ending.jpg')"></div><div class="tx"><svg class="mk" aria-hidden="true"><use href="#gh"/></svg><h1>Spaces That Work <em>as Hard as You Do.</em></h1><p>Family-run renovations in Cambridge, Kitchener, Waterloo and Guelph. Thoughtfully designed. Beautifully built.</p><div class="row"><a class="btn" href="#book">Book a Free Consultation</a><a class="btn ghost" href="tel:+15192121296">519-212-1296</a></div></div></div>
+  <div class="sc"><img src="assets/kitchen.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Kitchen renovations</span><h2>The <em>Heart</em> of Your Home.</h2><div class="row"><a class="btn" href="#portfolio-kitchens">Explore Kitchen Projects <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><img src="assets/bath-after.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Bathroom renovations</span><h2>Every <em>Detail</em> Matters.</h2><div class="row"><a class="btn" href="#portfolio-bathrooms">Explore Bathroom Projects <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><img src="assets/exterior.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Additions and exteriors</span><h2>More Space. <em>More Possibilities.</em></h2><div class="row"><a class="btn" href="#portfolio-additions">Explore Home Additions <span class="ar">→</span></a></div></div></div>
+  <div class="sc"><img src="assets/deck.jpg" alt="" loading="lazy"><div class="tx"><span class="chip">Decks and outdoor living</span><h2>Designed for Living. <em>Built for Lasting Memories.</em></h2><div class="row"><a class="btn" href="#portfolio-outdoor">Explore Outdoor Projects <span class="ar">→</span></a></div></div></div>
 </div>
 
 <!-- ===== Scene 7: the team ===== -->
@@ -517,6 +528,17 @@ footer .fine{grid-column:1/-1;font-size:12.5px;opacity:.7;margin-top:10px}
   </div>
 </footer>
 
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg aria-hidden="true" style="color:var(--accent)"><use href="#gh"/></svg><b>Go Hard Corporation</b></a>
+    <address>22 Glenbrook Crescent, Cambridge, Ontario N1R 7Z2<br><a href="tel:+15192121296">519-212-1296</a> · <a href="mailto:chris@gohardcorp.com">chris@gohardcorp.com</a><br>Cambridge · Kitchener · Waterloo · Guelph · Puslinch</address>
+    <p class="tag">Don't just build. Create.</p>
+    <p class="fine">The opening films are animated from photographs of real Go Hard projects. © <span id="yr"></span> Go Hard Corporation.</p>
+  </div>
+</footer>
+
 <script>
 (() => {
 'use strict';
@@ -550,36 +572,39 @@ const PROJECTS = {
   ]},
 };
 
-/* ---------- seeded split ---------- */
+
+/* ---------- seeded split: every word gets its own cue; <em> words keep their italics ---------- */
 function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
 $$('[data-split]').forEach((el, n) => {
-  const text = el.textContent.trim(); const r = rng(1000 + n * 7919); const words = text.split(/\s+/);
+  const text = el.textContent.trim(); const r = rng(1000 + n * 7919); const total = text.split(/\s+/).length; let i = 0;
   const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = text;
   const vis = document.createElement('span'); vis.setAttribute('aria-hidden', 'true');
-  words.forEach((w, i) => {
-    const ws = document.createElement('span'); ws.className = 'w';
-    ws.style.setProperty('--th', (i / Math.max(1, words.length) * 0.55 + r() * 0.05).toFixed(3));
-    ws.textContent = w; vis.appendChild(ws); if (i < words.length - 1) vis.appendChild(document.createTextNode(' '));
-  });
-  el.textContent = ''; el.append(sr, vis);
+  const walk = (node, into) => { node.childNodes.forEach(ch => {
+    if (ch.nodeType === 3) { ch.textContent.split(/(\s+)/).forEach(pt => { if (!pt) return; if (/^\s+$/.test(pt)) { into.appendChild(document.createTextNode(' ')); return; }
+      const ws = document.createElement('span'); ws.className = 'w'; ws.style.setProperty('--th', (i / Math.max(1, total) * 0.55 + r() * 0.05).toFixed(3)); i++; ws.textContent = pt; into.appendChild(ws); }); }
+    else if (ch.nodeType === 1) { const w = document.createElement(ch.tagName.toLowerCase()); into.appendChild(w); walk(ch, w); } }); };
+  walk(el, vis); el.textContent = ''; el.append(sr, vis);
 });
 
-/* ---------- journey engine ---------- */
-const journey = $('#journey'), stage = $('#stage'), video = $('#hero-video'), poster = $('#poster'), ring = $('.ring'), bloom = $('#bloom');
-const VIDEO_URL = 'assets/hero-scrub.mp4', VIDEO_BYTES = 6424776, VIDEO_END = 0.30;   // the film owns the first 30% of the journey
-const chapters = $$('.ch').map(c => ({ el: c, a: +c.dataset.a, b: +c.dataset.b, ti: +c.dataset.ti, to: +c.dataset.to, vin: -1, vout: -1, vhold: -1 }));
+/* ---------- journey engine: seven chapters, six films, one scroll ---------- */
+const journey = $('#journey'), stage = $('#stage'), ring = $('.ring'), bloom = $('#bloom');
+const FILM = 'assets/film/';
+const chapters = $$('.ch').map(c => ({ el: c, name: c.dataset.film, a: +c.dataset.a, b: +c.dataset.b, ti: +c.dataset.ti, to: +c.dataset.to, vin: -1, vout: -1, vhold: -1,
+  video: $('video', c), poster: $('.poster', c), ending: $('.ending', c), ready: false, failed: false, started: false, stills: false, seekBusy: false, pending: null }));
 const bands = $$('.band').map(b => ({ el: b, a: +b.dataset.a, b: +b.dataset.b, ramp: b.dataset.ramp ? +b.dataset.ramp : null, op: -1, k: -1, kb: -1 }));
 const first = bands[0], last = bands[bands.length - 1];
 const hudLabel = $('#hud-label'), hudDots = $$('#hud-dots i');
-const HUD = [[0, 'The arrival'], [0.30, 'Kitchen'], [0.50, 'Bathroom'], [0.68, 'Exterior'], [0.84, 'Outdoor living']];
+const HUD = ['The street', 'The approach', 'Come on in', 'Kitchen', 'Bathroom', 'Exterior', 'Outdoor living'];
 let hudIdx = -1, lastBloom = -1;
-let target = 0, shown = 0, rafId = null, lastTick = 0, onScreen = true, scrubOn = false, loadK = 0, loadStart = 0;
-let seekBusy = false, pendingTime = null, started = false, videoOK = false;
+let target = 0, shown = 0, rafId = null, lastTick = 0, onScreen = true, scrubOn = false, loadK = 0, loadStart = 0, filmWanted = false, loading = null;
 
 function progress() { const r = journey.getBoundingClientRect(); const range = journey.offsetHeight - innerHeight; return range > 0 ? clamp(-r.top / range, 0, 1) : 0; }
-function requestSeek(t) { if (!videoOK || !video.duration) return; if (seekBusy) { pendingTime = t; return; } seekBusy = true; video.currentTime = t; }
-video.addEventListener('seeked', () => { seekBusy = false; if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); } });
-video.addEventListener('error', () => { seekBusy = false; pendingTime = null; });
+chapters.forEach(c => {
+  c.video.addEventListener('seeked', () => { c.seekBusy = false; if (c.pending !== null) { const t = c.pending; c.pending = null; seek(c, t); } });
+  c.video.addEventListener('error', () => { c.seekBusy = false; c.pending = null; });
+});
+function seek(c, t) { if (!c.ready || !c.video.duration) return; if (Math.abs(c.video.currentTime - t) < 0.012) return; if (c.seekBusy) { c.pending = t; return; } c.seekBusy = true; c.video.currentTime = t; }
+function stills(c) { if (c.stills) return; c.stills = true; c.poster.style.backgroundImage = `url('${FILM}${c.name}-poster.jpg')`; c.ending.style.backgroundImage = `url('${FILM}${c.name}-ending.jpg')`; }
 
 function setVar(obj, key, el, name, v, eps) { if (Math.abs(v - obj[key]) > eps) { obj[key] = v; el.style.setProperty(name, v.toFixed(3)); } }
 function render(p) {
@@ -588,9 +613,10 @@ function render(p) {
     const vout = c.to ? smoothstep(p, c.b - c.to, c.b) : 0;
     const vhold = clamp((p - c.a) / Math.max(0.001, c.b - c.a), 0, 1);
     setVar(c, 'vin', c.el, '--in', vin, 0.004); setVar(c, 'vout', c.el, '--out', vout, 0.004); setVar(c, 'vhold', c.el, '--hold', vhold, 0.006);
+    if (!c.stills && p > c.a - 0.2) stills(c);   // the next chapter's stills arrive before the camera gets there
   }
-  // the door-light bloom that carries the house into the kitchen
-  const bl = Math.sin(clamp((p - 0.26) / 0.09, 0, 1) * Math.PI);
+  // the doorway light: it swells through the hall and the kitchen is on the other side of it
+  const bl = Math.sin(clamp((p - 0.365) / 0.07, 0, 1) * Math.PI);
   if (Math.abs(bl - lastBloom) > 0.004) { lastBloom = bl; bloom.style.setProperty('--b', bl.toFixed(3)); }
   for (const bd of bands) {
     const f = Math.min(0.02, (bd.b - bd.a) / 3);
@@ -603,9 +629,9 @@ function render(p) {
     if (Math.abs(op - bd.op) > 0.004) { bd.op = op; bd.el.style.opacity = op.toFixed(3); bd.el.style.pointerEvents = op > 0.5 ? 'auto' : 'none'; }
     setVar(bd, 'k', bd.el, '--k', k, 0.008); setVar(bd, 'kb', bd.el, '--kb', kb, 0.008);
   }
-  let hi = 0; for (let i = 0; i < HUD.length; i++) if (p >= HUD[i][0]) hi = i;
-  if (hi !== hudIdx) { hudIdx = hi; hudLabel.textContent = HUD[hi][1]; hudDots.forEach((d, i) => d.classList.toggle('on', i === hi)); }
-  const cue = p < 0.02; if (cue !== stage.classList.contains('cue-on')) stage.classList.toggle('cue-on', cue);
+  let hi = 0; for (let i = 0; i < chapters.length; i++) if (p >= chapters[i].a) hi = i;
+  if (hi !== hudIdx) { hudIdx = hi; hudLabel.textContent = HUD[hi]; hudDots.forEach((d, i) => d.classList.toggle('on', i === hi)); }
+  const cue = p < 0.015; if (cue !== stage.classList.contains('cue-on')) stage.classList.toggle('cue-on', cue);
 }
 function tick(now) {
   const dt = Math.min(100, now - (lastTick || now)); lastTick = now;
@@ -613,39 +639,47 @@ function tick(now) {
   shown += (target - shown) * (1 - Math.pow(1 - 0.16, dt / 16.667));
   const converged = Math.abs(target - shown) < 0.0005 && loadK >= 1;
   if (converged) { shown = target; rafId = null; lastTick = 0; } else rafId = requestAnimationFrame(tick);
-  requestSeek(clamp(shown / VIDEO_END, 0, 1) * video.duration);
+  for (const c of chapters) if (c.ready && shown > c.a - 0.03 && shown < c.b + 0.03) seek(c, clamp((shown - c.a) / (c.b - c.a), 0, 1) * Math.max(0, c.video.duration - 0.04));
   render(shown);
 }
 function onScroll() { target = progress(); if (rafId === null && onScreen) rafId = requestAnimationFrame(tick); }
 new IntersectionObserver(e => { onScreen = e[0].isIntersecting; if (onScreen) onScroll(); }, { threshold: 0 }).observe(journey);
 
-function failVideo() { if (stage.classList.contains('video-failed')) return; stage.classList.add('video-failed'); ring.style.opacity = 0; }
-function armVideo() { videoOK = true; requestSeek(clamp(progress() / VIDEO_END, 0, 1) * video.duration); stage.classList.add('video-ready'); ring.style.setProperty('--ld', 0); }
-async function loadHeroBlob() {
-  const ctrl = new AbortController(); let watchdog = setTimeout(() => ctrl.abort(), 20000);
-  const res = await fetch(VIDEO_URL, { priority: 'low', signal: ctrl.signal }); if (!res.ok) throw new Error('video ' + res.status);
-  const total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES; const reader = res.body.getReader(); const chunks = []; let got = 0, lastRing = 0;
-  for (;;) { const { done, value } = await reader.read(); if (done) break; clearTimeout(watchdog); watchdog = setTimeout(() => ctrl.abort(), 20000); chunks.push(value); got += value.length;
-    const frac = Math.min(1, got / total), now = performance.now(); if (now - lastRing > 100 || frac === 1) { lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - frac))); } }
+/* the films load one after another, in story order; a chapter's first and last frames carry it until its film is in */
+function armChapter(c) { c.ready = true; c.el.classList.add('ready'); if (c === chapters[0]) { stage.classList.add('film-on'); ring.style.setProperty('--ld', 0); } onScroll(); }
+function failChapter(c) { c.failed = true; c.el.classList.add('nofilm'); if (c === chapters[0]) ring.style.opacity = 0; }
+async function loadBlob(c) {
+  const ctrl = new AbortController(); let watchdog = setTimeout(() => ctrl.abort(), 25000);
+  const res = await fetch(FILM + c.name + '.mp4', { priority: c === chapters[0] ? 'high' : 'low', signal: ctrl.signal }); if (!res.ok) throw new Error('film ' + res.status);
+  const total = Number(res.headers.get('Content-Length')) || 5e6; const reader = res.body.getReader(); const chunks = []; let got = 0, lastRing = 0;
+  for (;;) { const { done, value } = await reader.read(); if (done) break; clearTimeout(watchdog); watchdog = setTimeout(() => ctrl.abort(), 25000); chunks.push(value); got += value.length;
+    if (c === chapters[0]) { const frac = Math.min(1, got / total), now = performance.now(); if (now - lastRing > 100 || frac === 1) { lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - frac))); } } }
   clearTimeout(watchdog);
-  video.src = URL.createObjectURL(new Blob(chunks, { type: res.headers.get('Content-Type') || 'video/mp4' })); video.load();
-  await new Promise((res2, rej) => { video.addEventListener('canplay', res2, { once: true }); video.addEventListener('error', rej, { once: true }); });
-  armVideo();
+  c.video.src = URL.createObjectURL(new Blob(chunks, { type: res.headers.get('Content-Type') || 'video/mp4' })); c.video.load();
+  await new Promise((ok, no) => { c.video.addEventListener('canplay', ok, { once: true }); c.video.addEventListener('error', no, { once: true }); });
 }
-function directSrc() { return new Promise((res, rej) => { video.addEventListener('canplay', () => { armVideo(); res(); }, { once: true }); video.addEventListener('error', rej, { once: true }); video.src = VIDEO_URL; video.load(); }); }
-function startBlobFetch() { if (started) return; started = true; loadHeroBlob().catch(() => directSrc().catch(failVideo)); }
+function directSrc(c) { return new Promise((ok, no) => { c.video.addEventListener('canplay', ok, { once: true }); c.video.addEventListener('error', no, { once: true }); c.video.src = FILM + c.name + '.mp4'; c.video.load(); }); }
+function loadNext() {
+  if (!filmWanted || loading) return;
+  // the chapter under the camera first, then the rest in story order
+  const p = progress(); const c = chapters.find(x => !x.started && p >= x.a - 0.03 && p <= x.b) || chapters.find(x => !x.started); if (!c) return;
+  c.started = true; loading = c; stills(c);
+  loadBlob(c).then(() => armChapter(c)).catch(() => directSrc(c).then(() => armChapter(c)).catch(() => failChapter(c))).finally(() => { loading = null; loadNext(); });
+}
 function initHeroOnce(withFilm) {
-  if (!initHeroOnce.poster) { initHeroOnce.poster = true; poster.style.backgroundImage = "url('assets/hero-poster.jpg')"; }
-  if (!withFilm || initHeroOnce.film) return; initHeroOnce.film = true;   // phones never download the film; the poster pushes in and the ending frame fades over it
-  const img = new Image(); img.onload = startBlobFetch; img.onerror = startBlobFetch; img.src = 'assets/hero-poster.jpg';
-  setTimeout(startBlobFetch, 4000);
+  stills(chapters[0]);
+  if (!withFilm) { chapters.forEach(c => { stills(c); if (!c.ready) c.el.classList.add('nofilm'); }); return; }   // phones never download the films
+  if (filmWanted) return; filmWanted = true;
+  chapters.forEach(c => c.el.classList.remove('nofilm'));
+  const img = new Image(); img.onload = loadNext; img.onerror = loadNext; img.src = FILM + chapters[0].name + '-poster.jpg';
+  setTimeout(loadNext, 4000);
 }
 
 /* ---------- modes: decided from the viewport and what the browser can do, never from device sniffing ---------- */
 let mode = null, stickyBroken = false, stickyChecks = 0;
 function pickMode() {
   if (RM.matches || stickyBroken) return 'stack';
-  return Math.min(innerWidth, innerHeight) < 600 ? 'lite' : 'full';   // phones get the same journey on stills
+  return Math.min(innerWidth, innerHeight) < 600 ? 'lite' : 'full';   // phones get the same journey on first and last frames
 }
 function enableScrub(withFilm) {
   if (scrubOn) return; scrubOn = true;
@@ -750,6 +784,7 @@ if (RM.matches) pinToFinalStates();
 applyHeroMode();
 window.__gh = { get mode() { return mode; }, breakSticky() { stickyBroken = true; applyHeroMode(); } };
 })();
+
 </script>
 </body>
 </html>
